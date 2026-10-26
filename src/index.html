@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert .env files to JSON and back. Runs fully offline in your browser.">
+  <meta name="author" content="Hossam Hamdy">
+  <title>ENV ⇄ JSON</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>ENV <span>⇄</span> JSON</h1>
+    <div class="opts">
+      <label><input type="checkbox" id="pretty" checked> Pretty JSON</label>
+      <label><input type="checkbox" id="types"> Detect numbers / booleans</label>
+      <label><input type="checkbox" id="sort"> Sort keys</label>
+    </div>
+    <div class="by">
+      <button id="download" title="Save this page as one file that works without internet">⤓ Offline<span class="wide"> copy</span></button>
+      <span>by Hossam Hamdy</span>
+      <a href="https://github.com/hosamhamdy258/env-json-converter" target="_blank" rel="noopener" title="Source on GitHub" aria-label="Source on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="pane">
+      <div class="bar">
+        <strong>.env</strong>
+        <button data-open="envFile">Open</button>
+        <button data-copy="env">Copy</button>
+        <button data-save="env">Save</button>
+        <button data-clear="env">Clear</button>
+        <input type="file" id="envFile" accept=".env,text/plain,*">
+      </div>
+      <textarea id="env" spellcheck="false" aria-label=".env input" placeholder="# paste .env here
+DB_HOST=localhost
+DB_PORT=5432
+SECRET=&quot;abc#123&quot;"></textarea>
+      <div class="status" id="envStatus" role="status"></div>
+    </section>
+
+    <div class="mid">
+      <button class="primary" id="toJson" title="Ctrl/Cmd+Enter in the .env box">ENV → JSON</button>
+      <button class="primary" id="toEnv" title="Ctrl/Cmd+Enter in the JSON box">JSON → ENV</button>
+    </div>
+
+    <section class="pane">
+      <div class="bar">
+        <strong>JSON</strong>
+        <button data-open="jsonFile">Open</button>
+        <button data-copy="json">Copy</button>
+        <button data-save="json">Save</button>
+        <button data-clear="json">Clear</button>
+        <input type="file" id="jsonFile" accept=".json,application/json,text/plain">
+      </div>
+      <textarea id="json" spellcheck="false" aria-label="JSON input" placeholder='{ "DB_HOST": "localhost" }'></textarea>
+      <div class="status" id="jsonStatus" role="status"></div>
+    </section>
+  </main>
+
+  <script src="converter.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

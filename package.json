@@ -1,0 +1,12 @@
+{
+  "name": "env-json-converter",
+  "version": "1.0.0",
+  "description": "Convert .env files to JSON and back. Single offline HTML file, no dependencies.",
+  "private": true,
+  "scripts": {
+    "test": "node test/converter.test.js",
+    "build": "node scripts/build.js"
+  },
+  "author": "Hossam Hamdy",
+  "license": "MIT"
+}
